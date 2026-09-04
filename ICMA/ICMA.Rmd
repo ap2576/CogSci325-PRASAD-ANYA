@@ -1,0 +1,11 @@
+---
+title: "D2SC ICMAs"
+output: html_notebook
+author: "Anya Prasad"
+date: "2026-09-03"
+---
+# ICMA Sept 3 2026
+```{r}
+plot(cars)
+```
+The plot shows a positive relationship between speed and distance because as speed increases, so does distance.
