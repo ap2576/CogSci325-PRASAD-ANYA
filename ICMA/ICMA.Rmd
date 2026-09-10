@@ -4,6 +4,36 @@ output: html_notebook
 author: "Anya Prasad"
 date: "2026-09-03"
 ---
+
+```{r}
+#| label: setup
+#| include: false
+
+library("tidyverse")
+library("palmerpenguins")
+```
+
+# ICMA 9-10-2026
+
+```{r}
+ggplot(data=penguins, mapping = aes(x=flipper_length_mm,
+                                    y= bill_length_mm)) + 
+  geom_point()
+```
+
+```{r}
+PlantGrowth
+ggplot(data=PlantGrowth,
+       mapping=aes(y=weight,x=group)) + 
+  geom_point(alpha=0.5) +
+  stat_summary(geom="pointrange",
+               fun.dat="mean_se",
+               color="purple")
+```
+Yes this is tidy data
+
+
+
 # ICMA Sept 3 2026
 ```{r}
 plot(cars)
