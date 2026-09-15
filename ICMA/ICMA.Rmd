@@ -11,6 +11,7 @@ date: "2026-09-03"
 
 library("tidyverse")
 library("palmerpenguins")
+
 ```
 
 # ICMA 9-10-2026
@@ -32,7 +33,31 @@ ggplot(data=PlantGrowth,
 ```
 Yes this is tidy data
 
+#ICMA 9-15-2026
+```{r}
+PlantGrowth|>
+ggplot(aes(y=weight,x=group)) +
+geom_boxplot(width=0.2)
+```
 
+```{r}
+flights |>
+  arrange(desc(month))
+```
+```{r}
+flights |> 
+  filter(arr_delay > 120 & dep_delay ==0) |> arrange(desc(arr_delay))
+```
+```{r}
+i<-flights |> 
+  filter(arr_delay >120 & dep_delay ==0) |> 
+  arrange(dep_delay)
+
+j<-flights |> 
+  arrange(dep_delay) |> 
+  filter(arr_delay > 120 & dep_delay <= 0)
+all(i == j)
+```
 
 # ICMA Sept 3 2026
 ```{r}
