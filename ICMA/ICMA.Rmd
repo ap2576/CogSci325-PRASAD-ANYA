@@ -59,6 +59,76 @@ j<-flights |>
 all(i == j)
 ```
 
+
+```{r}
+library(nycflights13)
+flights <-nycflights13::flights
+glimpse(flights)
+```
+```{r}
+flights |> 
+  # distance is miles, time is minutes
+  # covert to miles/hour using *60
+  mutate(speed=distance/air_time*60) |> 
+  head()
+```
+``` {r}
+flights |> 
+  mutate(speed=distance/air_time*60,
+         .after=distance) |> 
+  glimpse()
+```
+```{r}
+flights |> 
+  mutate(speed=distance/air_time*60,
+         .after=distance) |> 
+  select(year,month,day,
+         dep_time,air_time,distance,speed)
+```
+```{r}
+flights |> 
+  group_by(month,day) |> 
+  count()
+```
+```{r}
+flights_grounded<-flights |> 
+  group_by(month)
+flights_grounded |> 
+  count()
+flights_grouped |> 
+  ungroup()
+```
+# ICMA sep 17 2026
+```{r}
+flights |> 
+  group_by(month) |> 
+  slice_max(dep_delay,n=2)
+```
+```{r}
+flights |> 
+group_by(month) |> 
+  summarise(mean_delay=mean(arr_delay,na.rm=TRUE),
+            sd_delay=sd(arr_delay,na.rm=TRUE),
+            total_dep_delay=sum(dep_delay>0,na.rm=TRUE))
+
+```
+```{r}
+flights |> 
+group_by(month) |> 
+  summarise(mean_delay=mean(arr_delay,na.rm=TRUE),
+            sd_delay=sd(arr_delay,na.rm=TRUE),
+            number_late=sum(arr_delay>0,na.rm=TRUE),
+            total_number=n()) |> # pipe the result of...
+  mutate(percentage=number_late/total_number) |> 
+# want to add mutate? - which percentage of the total flight were late
+# 
+ggplot(aes(y=percentage,x=month))+
+  geom_line()+
+  scale_x_continuous(breaks=1:12)+
+  ylim(0,0.55)
+```
+
+
 # ICMA Sept 3 2026
 ```{r}
 plot(cars)
