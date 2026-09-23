@@ -4,7 +4,11 @@ output: html_notebook
 author: "Anya Prasad"
 date: "2026-09-03"
 ---
-
+# ICMA Sept 3 2026
+```{r}
+plot(cars)
+```
+The plot shows a positive relationship between speed and distance because as speed increases, so does distance.
 ```{r}
 #| label: setup
 #| include: false
@@ -127,10 +131,22 @@ ggplot(aes(y=percentage,x=month))+
   scale_x_continuous(breaks=1:12)+
   ylim(0,0.55)
 ```
-
-
-# ICMA Sept 3 2026
+# ICMA Sept 22 2026
 ```{r}
-plot(cars)
+library(nycflights13)
+summary <- flights |>
+  group_by (tailnum
+  ) |> 
+  summarize(
+DELAY = mean(arr_delay, na.rm = TRUE), n=n())
 ```
-The plot shows a positive relationship between speed and distance because as speed increases, so does distance.
+
+```{r}
+delay_summary <- flights |> 
+  group_by(tailnum) |> 
+  summarize(mean_delay = mean(arr_delay, na.rm = TRUE),
+            n_flights = n())
+```
+```{r chnk-lbl,echo=TRUE}
+# |> echo:TRUE
+```
