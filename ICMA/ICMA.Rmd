@@ -214,3 +214,34 @@ billboard |>
 # c(listing in quotation the names of the columns u want to seperate. this is called a vector with 3 elements).
 # year:day - combine all columns with year and day inclusive
 ```
+#ICMA Sept 29 2026
+```{r}
+read_csv("Week5-1_ClassData.csv")
+#i only gave it a file name, not a full path. why? and when i run the code, nothing shows up in environment (its empty). why? --> must save things to variables
+```
+```{r}
+getwd()
+```
+```{r}
+class_data <- read_csv("Week5-1_ClassData.csv")
+```
+```{r}
+class_data <- read_csv("Week5-1_ClassData.csv",
+                       na = c("N/A", ""))
+class_data
+# two things that represent NA's if you want to get rid og period would just put a period
+# <dbl> -- double, <chr> character
+
+```
+```{r}
+read_csv("Week5-1_ClassData.csv",
+         col_types = list(bonusPayment = col_number()),
+         na = "N/A")
+# wanna change bonusPayment column name?- put rename() - we want to pipe it to rename() and then say it is associated to one 
+```
+```{r}
+read_csv("Week5-1_ClassData.csv",
+         col_types = list(bonusPayment = col_number()),
+         na = c("N/A", ".")) |> 
+  rename(bonus_payment = bonusPayment)
+```

@@ -1,0 +1,61 @@
+---
+author: Anya Prasad
+title: "Data Exercise"
+output: html_notebook
+date: 10-1-2026
+---
+ICMA 10-1-2026
+
+```{r}
+library("tidyverse")
+```
+
+```{r}
+setwd("~/Documents/GitHub/CogSci325-PRASAD-ANYA/Data Exercise 1")
+data <- read_csv("Bats_Balls_2025-10-02.csv")
+```
+
+```{r}
+data <- data |> filter(DistributionChannel =='anonymous', Finished == 'TRUE')
+data 
+```
+
+``` {r}
+setwd("~/Documents/GitHub/CogSci325-PRASAD-ANYA/Data Exercise 1")
+read_csv("Bats_Balls_2025-10-02.csv") |> 
+  filter(DistributionChannel == "anonymous" & Progress == "100") |> 
+  rename(
+    subject_id = ResponseId,
+    date = EndDate,
+    cost_pencil_control = `Pencil Control`,
+    cost_magazine_control = Magazine_Control,
+    cost_magazine_standard = `Magazine Standard`,
+    cost_pencil_standard = Pencil_Standard
+  )
+data
+
+data_cost <- data |> 
+  select(subject_id, date,
+         contains("cost"))
+data_cost
+#not in tidy format - pivot_length so its multiple rows with same subject ID with one response per row. 
+```
+```{r}
+setwd("~/Documents/GitHub/CogSci325-PRASAD-ANYA/Data Exercise 1")
+
+```
+
+
+```{r}
+data_cost <-data |> 
+  select(subject_id, date,
+         contains("cost"))
+data_cost
+```
+
+```{r}
+setwd("~/Documents/GitHub/CogSci325-PRASAD-ANYA/Data Exercise 1")
+data <- read_csv("Bats_Balls_2025-10-02.csv")
+# rename what u think is better
+```
+```
