@@ -245,3 +245,46 @@ read_csv("Week5-1_ClassData.csv",
          na = c("N/A", ".")) |> 
   rename(bonus_payment = bonusPayment)
 ```
+# ICMA 10-8-2026
+
+## Slides 15 - 16 (Include the following in your ICMA file)
+
+ICMA question: what's the difference between these two code chunks? Are the outputs the same?
+**Answer here**: the difference is the first one has 'mapping' the second one doesnt. the output does the same thing. 
+
+
+```{r}
+mpg |> 
+  ggplot(mapping = aes(y = hwy, x = displ, color = manufacturer)) + 
+  geom_point()
+```
+
+```{r}
+mpg |> 
+  ggplot(aes(y = hwy, x = displ, color = manufacturer)) + 
+  geom_point()
+#this runs the same thing just without 'mapping' 
+```
+
+## Slide 19 (Include the following in your ICMA file)
+
+ICMA question: what are these warnings about and why should we worry about them?
+**Answer**: default you can only use 6 values. this is something to worry about because it warns you it might not be interpretable. meaning its not helpful.
+
+```{r}
+mpg |> 
+  ggplot(aes(y = hwy, x = displ, shape = manufacturer)) + 
+  geom_point()
+#when you replace 'shape' with fill or alpha it's not a good use
+```
+## Slide 42 (Include in ICMA)
+
+Change the color of the line to something other than the default blue
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = class)) + 
+  geom_smooth(color='black') # aes mapping variables to properties - map color to this variable (black) - it draws a line then associates is to black. so just say (color ='black')
+```
+
+
