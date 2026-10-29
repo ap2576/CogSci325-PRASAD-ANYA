@@ -258,6 +258,7 @@ ICMA question: what's the difference between these two code chunks? Are the outp
 
 ```{r}
 mpg |> 
+  
   ggplot(mapping = aes(y = hwy, x = displ, color = manufacturer)) + 
   geom_point()
 ```
@@ -543,3 +544,74 @@ ggplot(average_price, aes(x = cut, y = average)) +
   labs(y = "Here is some super long AXIS title")
 #average_price is the col name
 ```
+
+#ICMA 10-29-2026
+## ICMA Exercise 1
+
+Let's go back to using our `str_` functions on our `fruit` dataset but this time we'll use more complex regular expressions
+
+- filter to keep only names that begin with the letter f
+- filter to keep only names that begin or end with the letter a
+- filter to keep only names that start with a vowel
+- filter to keep only names that start with a consonant, followed by a vowel
+
+```{r dot-fruit}
+str_view(fruit, "^f")
+# could also s=use str_subset and str_detect
+```
+```{r dot-fruit}
+str_view(fruit, "^a")
+str_view(fruit, "a$")
+
+str_view(fruit, ("^a|a$"))
+```
+```{r dot-fruit}
+str_view(fruit, "^[aeiou]")
+```
+```{r dot-fruit}
+str_view(fruit, "[^aeiou]")
+```
+
+```{r}
+str_subset(fruit, "^[^aeiou][aeiou]")
+#saying 
+```
+
+
+## ICMA Exercise 2:
+
+What do these regexes mean? Use words to describe the meaning, then check in R by applying it to the `fruit` vector, `words` vector, or the `babynames` dataset 
+
+- `^.*$`
+the whole string start to finish. any character 0 or more times
+```{r}
+str_view(fruit, "^.*$)")
+```
+- `[abcdefg]+`
+includes either of  abcdefg more than once. 
+```{r}
+str_view(fruit, "[abcdefg]+")
+```
+- `[abcdefg][zyxwvuts]`
+word where [abcdefg] followed by (next to each other) [zyxwvuts]
+
+- `\..\..\..`
+a period followed by any character 3x times. a . means repeat. \ = escape your world give me real thing
+- `(.)\1\1\1`
+
+- `(.)[a-z](.).*\2\1`
+any character a-z anycharacter, any character again .* - any character 0 or more times. the \2\1 --> \1 is the character captured by the first group. \2 means what is in the second group
+```{r}
+str_view(distinct_baby_names, "(.)[a-z](.).*\2\1")
+#j<aenne>tte
+#L<avinia>
+#J<eanne>
+```
+
+NOTE: if using babynames, use the distinct_baby_names vector we created before or filter the babynames dataset for years > 2000
+
+NOTE: when applying these remember that `\1` needs to be converted to `\\1` when it appears within in quotation marks (" ")
+
+
+
+
