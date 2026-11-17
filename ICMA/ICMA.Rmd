@@ -888,3 +888,37 @@ demographics_e2 <- tribble(
 ```
 
 
+# ICMA 4
+** or _:**bold**
+* or _:*italics*
+new paragraph, end of line with 2 spaces or include a line break, <br>
+superscripts: ^:superscript^2^ becomes superscript^2
+in-line equations by wrappung in: $:$A = \pi*r^r{2}$ becomes A = pi * r^2
+
+2 + 2
+my_varibales <- mean(c(1,2,3,4)) `r my_variable it would calc as 2.5
+
+# ICMA 5:
+```{r}
+d_mean_price <- diamonds |> 
+  summarise(mean_price = mean(price))
+```
+The **mean price** of *diamonds* is $`r round(d_mean_price)` 
+
+# ICMA 6:
+```{r}
+#| echo: false
+#| eval: false
+#| fig-cap: "Chick Weight Over Time"
+ChickWeight |> 
+  ggplot(aes(y = weight, x = Time, group = Chick)) +
+  geom_line()
+```
+
+# ICMA 7:
+
+```{r}
+flights |> 
+  head(3)
+knitr::kable()
+```
